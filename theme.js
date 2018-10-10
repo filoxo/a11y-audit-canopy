@@ -1,12 +1,12 @@
 import theme from 'mdx-deck/themes'
+import merge from 'lodash.merge'
 
-export default {
-  ...theme,
+const customTheme = merge({...theme}, {
+  font: '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
+  // custom colors
+  colors: {
+    text: '#333',
+  }
+})
 
-  // Customize your presentation theme here.
-  //
-  // Read the docs for more info:
-  // https://github.com/jxnblk/mdx-deck/blob/master/docs/theming.md
-  // https://github.com/jxnblk/mdx-deck/blob/master/docs/themes.md
-
-}
+export default customTheme
