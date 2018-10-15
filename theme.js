@@ -1,4 +1,5 @@
 import theme from 'mdx-deck/themes'
+import syntaxHighlighting from 'react-syntax-highlighter/styles/prism/ghcolors'
 import merge from 'lodash.merge'
 
 const customTheme = merge({...theme}, {
@@ -6,6 +7,9 @@ const customTheme = merge({...theme}, {
   // custom colors
   colors: {
     text: '#333',
+  }, 
+  prism: {
+    style: syntaxHighlighting,
   }
 })
 

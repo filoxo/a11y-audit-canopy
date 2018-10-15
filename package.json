@@ -16,5 +16,8 @@
     "lodash.merge": "^4.6.1",
     "mdx-deck": "^1.6.7"
   },
-  "name": "a11y-audit"
+  "name": "a11y-audit",
+  "dependencies": {
+    "react-syntax-highlighter": "^9.0.0"
+  }
 }
