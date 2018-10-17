@@ -13,6 +13,7 @@
   "author": "Carlos Filoteo",
   "license": "MIT",
   "devDependencies": {
+    "file-loader": "^2.0.0",
     "lodash.merge": "^4.6.1",
     "mdx-deck": "^1.6.7"
   },
