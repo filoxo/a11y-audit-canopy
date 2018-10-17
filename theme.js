@@ -10,6 +10,11 @@ const customTheme = merge({...theme}, {
   }, 
   prism: {
     style: syntaxHighlighting,
+  },
+  css: {
+    'pre code': {
+      whiteSpace: 'pre-wrap !important',
+    }
   }
 })
 
