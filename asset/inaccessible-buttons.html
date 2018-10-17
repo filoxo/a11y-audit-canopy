@@ -15,6 +15,11 @@
       },
     }
   </script>
+  <style>
+    :root {
+      font-size: 20px;
+    }
+  </style>
 </head>
 
 <body>
@@ -23,21 +28,25 @@
   class App extends React.Component {
     state = {
       counter: 0,
+      isLeftSidepaneOpen: false,
       numberOfFocusableElements: null
     }
     componentDidMount() {
       this.setState({numberOfFocusableElements: helper.getFocusable().length})
+    }
+    toggleLeftSidepane = () => {
+      this.setState({isLeftSidepaneOpen: !this.state.isLeftSidepaneOpen}, this.onClick)
     }
     onClick = (e) => {
       this.setState({counter: this.state.counter + 1})
     }
     render() {
       return <React.Fragment>
-        <div onClick={this.onClick} style={{display: 'inline-block'}}>
-          <div className={`cps-gray-10 cps-margin-left-4 cps-icon cps-icon-${this.props.isLeftSidepaneOpen ? 'left' : 'right'}-caret`}></div>
+        <div onClick={this.toggleLeftSidepane} style={{display: 'inline-block'}}>
+          <div className={`cps-gray-10 cps-icon cps-icon-${this.state.isLeftSidepaneOpen ? 'left' : 'right'}-caret`}></div>
         </div>
         <i className="cps-icon cps-icon-close" onClick={this.onClick}/>
-        <span onClick={this.onClick} className="cps-modal__dialog__close cps-icon cps-icon-close"/>
+        <span onClick={this.onClick} className="cps-icon cps-icon-trash"/>
         <a onClick={this.onClick} className="cps-modal__dialog__close cps-icon cps-icon-close" />
         <div style={{position: 'fixed', bottom: '0', textAlign: 'center', width: '100%'}}>
           <div>Click counter: {this.state.counter}</div>
