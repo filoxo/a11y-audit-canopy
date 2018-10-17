@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Inaccessible Buttons</title>
+  <link rel="stylesheet" href="/asset/lib/styleguide.css">
+  <script src="/asset/lib/react.development.js"></script>
+  <script src="/asset/lib/react-dom.development.js"></script>
+  <!-- Don't use this in production: -->
+  <script src="/asset/lib/babel.min.js"></script>
+  <script>
+    window.helper = {
+      getFocusable: () => {
+        return document.querySelectorAll('input, select, textarea, a[href], button, [tabindex]')
+      },
+    }
+  </script>
+  <style>
+    :root {
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+  const handleKeyboardClick = (fn) => (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      return fn(e)
+    }
+  }
+  
+  class App extends React.Component {
+    state = {
+      counter: 0,
+      isLeftSidepaneOpen: false,
+      numberOfFocusableElements: null
+    }
+    componentDidMount() {
+      this.setState({numberOfFocusableElements: helper.getFocusable().length})
+    }
+    toggleLeftSidepane = () => {
+      this.setState({isLeftSidepaneOpen: !this.state.isLeftSidepaneOpen}, this.onClick)
+    }
+    onClick = (e) => {
+      this.setState({counter: this.state.counter + 1})
+    }
+    render() {
+      return <React.Fragment>
+        <button 
+          onClick={this.toggleLeftSidepane} 
+          aria-expanded={this.state.isLeftSidepaneOpen} 
+          className="cps-btn-icon cps-link cps-padding-4"
+        >
+          <span className={`cps-icon cps-icon-${this.state.isLeftSidepaneOpen ? 'left' : 'right'}-caret`}/>
+          <span className="cps-hide-visually">Toggle Sidepane</span>
+        </button>
+        <button onClick={this.onClick} className="cps-btn-icon cps-link cps-padding-0">
+          <span className="cps-icon cps-icon-trash" />
+          <span className="cps-hide-visually">Delete item</span>
+        </button>
+        <span 
+          role="button"
+          onClick={this.onClick} 
+          onKeyDown={handleKeyboardClick(this.onClick)}
+          className="cps-btn-icon cps-link cps-padding-0"
+          tabIndex="0"
+        >
+          <span className="cps-icon cps-icon-close"/>
+          <span className="cps-screenreader">Close</span>
+        </span>
+        <button onClick={this.onClick} className="cps-modal__dialog__close cps-btn-icon cps-link cps-padding-4">
+          <span className="cps-icon cps-icon-close"/>
+          <span className="cps-hide-visually">Close modal</span>
+        </button>
+        <div style={{position: 'fixed', bottom: '0', textAlign: 'center', width: '100%'}}>
+          <div>Click counter: {this.state.counter}</div>
+          {this.state.numberOfFocusableElements !== null && <div>There are {this.state.numberOfFocusableElements} focusable elements</div>}
+        </div>
+      </React.Fragment>
+    }
+  }
+  ReactDOM.render(<App/>, document.getElementById('root'));
+</script>
+</body>
+
+</html>
