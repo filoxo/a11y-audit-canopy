@@ -11,6 +11,9 @@ const customTheme = merge({...theme}, {
   prism: {
     style: syntaxHighlighting,
   },
+  'blockquote': {
+    fontStyle: 'italic'
+  },
   css: {
     'pre code': {
       whiteSpace: 'pre-wrap !important',
