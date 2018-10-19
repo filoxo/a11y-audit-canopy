@@ -28,7 +28,9 @@ You all know accessibility is necessary
 
 export default Invert
 
-## The problem: Links with no href value
+**The problem:**
+
+## Links with no href value
 
 Mostly abused because of user agent button styles
 
@@ -45,9 +47,8 @@ Mostly abused because of user agent button styles
 [W3C: Introduction to links and anchors](https://www.w3.org/TR/html4/struct/links.html)
 
 ---
-export default Invert
 
-## The fix:
+**The fix:**
 
 <ul style={{textAlign: 'left'}}> 
 <li>Anchors should be used to connect web resources</li>
@@ -62,7 +63,9 @@ export default Invert
 
 export default Invert
 
-## The problem: Inaccessible click-bound elements
+**The problem:**
+
+## Inaccessible click-bound elements
 
 ```jsx 
 <div onClick={this.props.toggleLeftSidepane}>
@@ -82,23 +85,25 @@ export default Invert
 
 export default Invert
 
-## The problem: Inaccessible click-bound elements
+Click-bound non-button elements
 
-<AppearList>
-  <li>semantically less-correct</li> 
-  <li>cannot be interacted with by keyboard (focus, event handlers)</li>
-  <li>lose targetability with CSS selectors (:focus, :active, :focus-within)</li>
-</AppearList>
+- are semantically less-correct
+- cannot be interacted with by keyboard (focus, event handlers)
+- lose targetability with CSS selectors (:focus, :active, :focus-within)
 
 ---
 
-## The fix: Just use a `button`
+**The fix:**
+
+## Just use a `button`
 
 ---
 
 export default Invert
 
-## The problem: No accessible button text or label
+**The problem:**
+
+## No accessible button text or label
 
 ```jsx
 // From Canopy Styleguide
@@ -114,20 +119,20 @@ export default Invert
 
 ---
 
-## The fix:
+**The fix:**
 
-<AppearList>
+<ul style={{textAlign: 'left'}}>
   <li>Prefer using HTML button almost always</li>
-  <li><span>If you have to use a different element you must mplement everything a button can do:</span>
+  <li><span>If you have to use a different element you <strong>must implement everything a button can do</strong>:</span>
     <ul>
       <li>tabindex=”0” to add it to tab flow</li>
       <li>onClick handler</li>
-      <li>onKeypress handler to trigger onClick when Enter or Space is pressed</li>
+      <li>onKeydown/up handler to trigger onClick when Enter or Space is pressed</li>
       <li>Same CSS styles (:active doesn’t work on divs)</li>
     </ul>
   </li>
   <li>Consult with UX to see if that action can be deferred to a different inner element</li>
-</AppearList>
+</ul>
 
 ---
 
@@ -190,12 +195,10 @@ Screen readers and assistive technologies cannot detect what the button will do
 
 ---
 
-## The fix:
+**The fix:**
 
-<AppearList>
-  <li>Add meaningful text</li>
-  <li>Add text that is hidden visually using <code>.cps-hide-visually</code> or <code>.cps-screenreader</code></li>
-</AppearList>
+- Add meaningful text
+- Add text that is hidden visually using `.cps-hide-visually` or `.cps-screenreader`
 
 ---
 
@@ -208,7 +211,9 @@ export default Invert
   />
 </Appear>
 
-## The problem: Icon-only buttons
+**The problem:**
+
+## Icon-only buttons
 
 ---
 
@@ -283,30 +288,48 @@ export default Invert
 
 Keyboard navigation is desirable not only for accessibility, but also for “power users”
 
----
+On the Client Portal, the first tabbed element:
 
-export default Invert
-
-## The problem: Color
-
----
-
-## The fix
-
-Understand Color Contrast
-Size, weight, and font also make a big difference
-
-2 standards: AA, and AAA
+- is a button
+- not in the nav bar
+- that has its outline removed
+- and is practically undetectable due to white label styles
 
 ---
 
 export default Invert
 
-## The Problem: Icons
+**The problem** 
+
+##  Color
 
 ---
 
-## The fix
+**The fix**
+
+## Understand Contrast
+
+- contrast is a measure of the difference in perceived "luminance" or brightness between two colors
+- the phrase "color contrast" is never used
+- Level AA 1.4.3 requirements:
+    - 4.5:1 contrast for normal text 
+    - 3:1 contrast for large text 
+- Level AAA requirements: 
+    - 7:1 contrast for normal text
+    - 4.5:1 contrast for large text
+- Size, weight, and font face make a big difference
+
+---
+
+export default Invert
+
+**The problem:**
+
+## Icon markup
+
+---
+
+**The fix:**
 
 <AppearList>
   <li>Should not use the `i` element</li>
@@ -320,8 +343,8 @@ export default Invert
 
 export default Invert
 
-## The problem: Error states and Constraint Validation
-https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation
+**The problem:**
+## Error states and Constraint Validation
 
 ```<input type=”text” className=”cps-error” />```
 
@@ -331,15 +354,26 @@ What do you think a screen reader will read?
 
 ## The fix
 
----
-
-- Gain empathy for users who have disabilities
-- https://chrome.google.com/webstore/detail/funkify-disability-simula/ojcijjdchelkddboickefhnbdpeajdjg?hl=en
-- We are all disabled at some point
-- WARIA
-https://www.w3.org/TR/wai-aria-practices-1.1/
-No ARIA is better than Bad ARIA
+https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/Constraint_validation
 
 ---
 
 ## // TODO
+
+- Gain empathy for all users
+    - [Funkify](https://chrome.google.com/webstore/detail/funkify-disability-simula/ojcijjdchelkddboickefhnbdpeajdjg?hl=en)
+- Learn WARIA practices
+    - https://www.w3.org/TR/wai-aria-practices-1.1/
+    - No ARIA is better than _Bad_ ARIA
+- Try using an alternative input
+    - Screen reader
+    - Keyboard only
+    - Visual input/eye tracking software
+
+---
+
+## // TODO @ Canopy
+
+- Compare Styleguide components to WARIA demo components
+- Add keyboard accessibility for power users
+- Focus on Client Portal
