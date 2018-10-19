@@ -17,6 +17,13 @@ const customTheme = merge({...theme}, {
   css: {
     'pre code': {
       whiteSpace: 'pre-wrap !important',
+    }, 
+    'li ul, li ol': {
+      fontSize: '1em',
+    },
+    'li > p': {
+      fontSize: '1em',
+      margin: 0
     }
   }
 })
