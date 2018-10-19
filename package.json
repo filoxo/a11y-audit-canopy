@@ -2,18 +2,22 @@
   "private": true,
   "version": "1.0.0",
   "description": "Accessibility Audit review for Canopytax",
+  "homepage": "https://filoxo.github.io/a11y-audit-canopy",
   "scripts": {
     "start": "mdx-deck deck.mdx",
     "build": "mdx-deck build deck.mdx",
     "pdf": "mdx-deck pdf deck.mdx",
     "image": "mdx-deck screenshot deck.mdx",
-    "help": "mdx-deck"
+    "help": "mdx-deck",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "Carlos Filoteo",
   "license": "MIT",
   "devDependencies": {
     "file-loader": "^2.0.0",
+    "gh-pages": "^2.0.1",
     "lodash.merge": "^4.6.1",
     "mdx-deck": "^1.6.7"
   },
